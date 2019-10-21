@@ -185,9 +185,7 @@ def question_8(check_print=False):
     filtered_df = df[df.index.str.strip().isin(filtered_countries_list)]
 
     # removing the undesired columns
-    filtered_df.drop(
-        ['summer_gold', 'summer_silver', 'summer_bronze', 'summer_participation', 'total', 'winter_participation'],
-        axis='columns', inplace=True)
+    filtered_df = filtered_df[filtered_df.columns[~filtered_df.columns.isin(['summer_gold', 'summer_silver', 'summer_bronze', 'summer_participation', 'total', 'winter_participation'])]]
 
     rename_winter_dict = {
         "winter_gold": "Gold",
@@ -196,7 +194,7 @@ def question_8(check_print=False):
     }
 
     # renaming the columns
-    filtered_df.rename(columns=rename_winter_dict, inplace=True)
+    filtered_df = filtered_df.rename(columns=rename_winter_dict)
 
     # plot
     plt = filtered_df.plot.bar(rot=0, color=['#4472C4', '#ED7D31', '#A5A5A5'], title='Winter Games').legend(
@@ -271,13 +269,13 @@ def question_10(check_print=False):
 
 
 if __name__ == "__main__":
-    # question_1(True)
-    # question_2(True)
-    # question_3(True)
-    # question_4(True)
-    # question_5(True)
-    # question_6(True)
-    # question_7(True)
+    question_1(True)
+    question_2(True)
+    question_3(True)
+    question_4(True)
+    question_5(True)
+    question_6(True)
+    question_7(True)
     question_8(True)
-    # question_9(True)
-    # question_10(True)
+    question_9(True)
+    question_10(True)
