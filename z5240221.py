@@ -10,8 +10,9 @@ def convert_int(n):
         return int(n)
 
 
-def question_1():
-    print("--------------- question_1 ---------------")
+def question_1(check_print=False):
+    if check_print:
+        print("--------------- question_1 ---------------")
     # importing the data sets
     df1 = pd.read_csv('Olympics_dataset1.csv')
     df2 = pd.read_csv('Olympics_dataset2.csv')
@@ -49,12 +50,14 @@ def question_1():
     # df.drop(df.index[df.shape[0]-1], inplace=True)
 
     # printing first five rows of data frame
-    print(df.head().to_string())
+    if check_print:
+        print(df.head().to_string())
     return df
 
 
-def question_2():
-    print("--------------- question_2 ---------------")
+def question_2(check_print=False):
+    if check_print:
+        print("--------------- question_2 ---------------")
     df = question_1()
 
     # function for removing the words in brackets
@@ -74,23 +77,27 @@ def question_2():
     df.drop(['summer_rubbish', 'summer_total', 'winter_total'], axis='columns', inplace=True)
 
     # printing the data
-    print(df.head().to_string())
+    if check_print:
+        print(df.head().to_string())
     return df
 
 
-def question_3():
-    print("--------------- question_3 ---------------")
+def question_3(check_print=False):
+    if check_print:
+        print("--------------- question_3 ---------------")
     df = question_2()
     # dropping rows with na values
     df.dropna(how='all', inplace=True)
 
     # printing values
-    print(df.tail(10).to_string())
+    if check_print:
+        print(df.tail(10).to_string())
     return df
 
 
-def question_4():
-    print("--------------- question_4 ---------------")
+def question_4(check_print=False):
+    if check_print:
+        print("--------------- question_4 ---------------")
     df = question_3()
 
     # function for casting string to integer
@@ -100,12 +107,14 @@ def question_4():
     df['summer_gold'] = df['summer_gold'].map(convert_int)
 
     # printing the country with max gold
-    print(df[df['summer_gold'] == df['summer_gold'].max()].index[0])
+    if check_print:
+        print(df[df['summer_gold'] == df['summer_gold'].max()].index[0])
     return df
 
 
-def question_5():
-    print("--------------- question_5 ---------------")
+def question_5(check_print=False):
+    if check_print:
+        print("--------------- question_5 ---------------")
     df = question_4()
     # converting string into numbers
     df['winter_gold'] = df['winter_gold'].map(convert_int)
@@ -114,12 +123,14 @@ def question_5():
     max_diff = abs(df['winter_gold'] - df['summer_gold']).max()
 
     # finding the name of the country
-    print(df[abs(df['winter_gold'] - df['summer_gold']) == max_diff].index[0], max_diff)
+    if check_print:
+        print(df[abs(df['winter_gold'] - df['summer_gold']) == max_diff].index[0], max_diff)
     return df
 
 
-def question_6():
-    print("--------------- question_6 ---------------")
+def question_6(check_print=False):
+    if check_print:
+        print("--------------- question_6 ---------------")
     # changing the str values to numberic values
     df = question_5()
     df['summer_silver'] = df['summer_silver'].map(convert_int)
@@ -132,13 +143,15 @@ def question_6():
         'winter_silver'] + df['winter_bronze']
 
     # printing the values
-    print(df.sort_values(by='total', ascending=False).head().to_string())
-    print(df.sort_values(by='total', ascending=False).tail().to_string())
+    if check_print:
+        print(df.sort_values(by='total', ascending=False).head().to_string())
+        print(df.sort_values(by='total', ascending=False).tail().to_string())
     return df
 
 
-def question_7():
-    print("--------------- question_7 ---------------")
+def question_7(check_print=False):
+    if check_print:
+        print("--------------- question_7 ---------------")
     df = question_6()
     # take out top 10 winners
     top_winners = df.sort_values(by='total', ascending=False).head(10)
@@ -154,12 +167,14 @@ def question_7():
     plt = top_winners_sorted.plot.barh(y=['winter_total', 'summer_total'], stacked=True,
                                        title='Medals for Winter and Summer Games')
     plt.legend(['Winter games', 'Summer games'], ncol=3, edgecolor='None')
-    matplot.show()
+    if check_print:
+        matplot.show()
     return df
 
 
-def question_8():
-    print("--------------- question_8 ---------------")
+def question_8(check_print=False):
+    if check_print:
+        print("--------------- question_8 ---------------")
     df = question_6()
     filtered_countries_list = [
         'United States',
@@ -186,11 +201,13 @@ def question_8():
     # plot
     plt = filtered_df.plot.bar(rot=0, color=['#4472C4', '#ED7D31', '#A5A5A5'], title='Winter Games').legend(
         edgecolor='None', ncol=3, loc='best')
-    matplot.show()
+    if check_print:
+        matplot.show()
 
 
-def question_9():
-    print("--------------- question_9 ---------------")
+def question_9(check_print=False):
+    if check_print:
+        print("--------------- question_9 ---------------")
     df = question_6()
     # convert participation from string to int
     df['summer_participation'] = df['summer_participation'].map(convert_int)
@@ -203,11 +220,14 @@ def question_9():
     df.loc[df['summer_participation'] == 0, 'rate_summer'] = 0
 
     # printing the values
-    print(df.sort_values(by='rate_summer', ascending=False).head()['rate_summer'].to_string())
+    if check_print:
+        print(df.sort_values(by='rate_summer', ascending=False).head()['rate_summer'].to_string())
     return df
 
-def question_10():
-    print("--------------- question_10 ---------------")
+
+def question_10(check_print=False):
+    if check_print:
+        print("--------------- question_10 ---------------")
     df = question_9()
 
     # convert participation from string to int
@@ -245,19 +265,19 @@ def question_10():
                                  title='Scatter plot of winning countries, Summer Rate vs Winner Rate')
     ax.set_xlabel("Summer Rate")
     ax.set_ylabel("Winter Rate")
-    matplot.show()
 
-    pass
+    if check_print:
+        matplot.show()
 
 
 if __name__ == "__main__":
-    # question_1()
-    # question_2()
-    # question_3()
-    # question_4()
-    # question_5()
-    # question_6()
-    # question_7()
-    # question_8()
-    # question_9()
-    question_10()
+    # question_1(True)
+    # question_2(True)
+    # question_3(True)
+    # question_4(True)
+    # question_5(True)
+    # question_6(True)
+    # question_7(True)
+    question_8(True)
+    # question_9(True)
+    # question_10(True)
