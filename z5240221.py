@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as matplot
 
 
+# function for casting string to integer
 def convert_int(n):
     if ',' in n:
         n = n.replace(',', '')
@@ -100,9 +101,6 @@ def question_4(check_print=False):
         print("--------------- question_4 ---------------")
     df = question_3()
 
-    # function for casting string to integer
-
-
     # converting string into numbers
     df['summer_gold'] = df['summer_gold'].map(convert_int)
 
@@ -131,7 +129,7 @@ def question_5(check_print=False):
 def question_6(check_print=False):
     if check_print:
         print("--------------- question_6 ---------------")
-    # changing the str values to numberic values
+    # changing the str values to numeric values
     df = question_5()
     df['summer_silver'] = df['summer_silver'].map(convert_int)
     df['summer_bronze'] = df['summer_bronze'].map(convert_int)
@@ -210,7 +208,7 @@ def question_9(check_print=False):
     # convert participation from string to int
     df['summer_participation'] = df['summer_participation'].map(convert_int)
 
-    # make a new column in dataframe with the rule
+    # make a new column in data frame with the rule
     df['rate_summer'] = (df['summer_gold'] * 5 + df['summer_silver'] * 3 + df['summer_bronze']) / df[
         'summer_participation']
 
@@ -231,7 +229,7 @@ def question_10(check_print=False):
     # convert participation from string to int
     df['winter_participation'] = df['winter_participation'].map(convert_int)
 
-    # make a new column in dataframe with the rule
+    # make a new column in data frame with the rule
     df['rate_winter'] = (df['winter_gold'] * 5 + df['winter_silver'] * 3 + df['winter_bronze']) / df[
         'winter_participation']
 
@@ -240,7 +238,7 @@ def question_10(check_print=False):
 
     continents_df = pd.read_csv('Countries-Continents.csv')
 
-    # merging the datasets
+    # merging the data sets
     df_joined = pd.merge(left=df, right=continents_df, on=None, left_on=df.index.str.strip(), right_on='Country',
                          how='left')
     df_joined["Continent"].fillna("Unknown", inplace=True)
@@ -260,9 +258,9 @@ def question_10(check_print=False):
     unknown_df = df_joined.query('Continent == "Unknown"').filter(['rate_summer', 'rate_winter', 'Country']).set_index(
         'Country')
 
-    def annotate_df(df, ax):
-        for k, v in df.iterrows():
-            ax.annotate(k, v)
+    def annotate_df(dataframe, axis):
+        for k, v in dataframe.iterrows():
+            axis.annotate(k, v)
 
     ax = africa_df.plot.scatter(x='rate_summer', y='rate_winter', color='green', label='Africa')
     ax = asia_df.plot.scatter(x='rate_summer', y='rate_winter', color='orange', label='Asia', ax=ax)
@@ -272,6 +270,7 @@ def question_10(check_print=False):
     ax = oceania_df.plot.scatter(x='rate_summer', y='rate_winter', color='yellow', label='Oceania', ax=ax)
     ax = unknown_df.plot.scatter(x='rate_summer', y='rate_winter', color='grey', label='Unknown', figsize=(21, 9),
                                  ax=ax, title='Scatter plot of winning countries, Summer Rate vs Winner Rate')
+    # I have increased the size of the plot to fit all the data points and make it as presentable as possible
     ax.set_xlabel("Summer Rate")
     ax.set_ylabel("Winter Rate")
 
