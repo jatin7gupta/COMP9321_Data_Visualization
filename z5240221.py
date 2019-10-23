@@ -245,13 +245,24 @@ def question_10(check_print=False):
                          how='left')
     df_joined["Continent"].fillna("Unknown", inplace=True)
 
-    africa_df = df_joined.query('Continent == "Africa"')
-    asia_df = df_joined.query('Continent == "Asia"')
-    europe_df = df_joined.query('Continent == "Europe"')
-    n_america_df = df_joined.query('Continent == "North America"')
-    s_america_df = df_joined.query('Continent == "South America"')
-    oceania_df = df_joined.query('Continent == "Oceania"')
-    unknown_df = df_joined.query('Continent == "Unknown"')
+    africa_df = df_joined.query('Continent == "Africa"').filter(['rate_summer', 'rate_winter', 'Country']).set_index(
+        'Country')
+    asia_df = df_joined.query('Continent == "Asia"').filter(['rate_summer', 'rate_winter', 'Country']).set_index(
+        'Country')
+    europe_df = df_joined.query('Continent == "Europe"').filter(['rate_summer', 'rate_winter', 'Country']).set_index(
+        'Country')
+    n_america_df = df_joined.query('Continent == "North America"').filter(
+        ['rate_summer', 'rate_winter', 'Country']).set_index('Country')
+    s_america_df = df_joined.query('Continent == "South America"').filter(
+        ['rate_summer', 'rate_winter', 'Country']).set_index('Country')
+    oceania_df = df_joined.query('Continent == "Oceania"').filter(['rate_summer', 'rate_winter', 'Country']).set_index(
+        'Country')
+    unknown_df = df_joined.query('Continent == "Unknown"').filter(['rate_summer', 'rate_winter', 'Country']).set_index(
+        'Country')
+
+    def annotate_df(df, ax):
+        for k, v in df.iterrows():
+            ax.annotate(k, v)
 
     ax = africa_df.plot.scatter(x='rate_summer', y='rate_winter', color='green', label='Africa')
     ax = asia_df.plot.scatter(x='rate_summer', y='rate_winter', color='orange', label='Asia', ax=ax)
@@ -259,10 +270,18 @@ def question_10(check_print=False):
     ax = n_america_df.plot.scatter(x='rate_summer', y='rate_winter', color='dodgerblue', label='North America', ax=ax)
     ax = s_america_df.plot.scatter(x='rate_summer', y='rate_winter', color='red', label='South America', ax=ax)
     ax = oceania_df.plot.scatter(x='rate_summer', y='rate_winter', color='yellow', label='Oceania', ax=ax)
-    ax = unknown_df.plot.scatter(x='rate_summer', y='rate_winter', color='grey', label='Unknown', ax=ax,
-                                 title='Scatter plot of winning countries, Summer Rate vs Winner Rate')
+    ax = unknown_df.plot.scatter(x='rate_summer', y='rate_winter', color='grey', label='Unknown', figsize=(21, 9),
+                                 ax=ax, title='Scatter plot of winning countries, Summer Rate vs Winner Rate')
     ax.set_xlabel("Summer Rate")
     ax.set_ylabel("Winter Rate")
+
+    annotate_df(africa_df, ax)
+    annotate_df(asia_df, ax)
+    annotate_df(europe_df, ax)
+    annotate_df(n_america_df, ax)
+    annotate_df(s_america_df, ax)
+    annotate_df(oceania_df, ax)
+    annotate_df(unknown_df, ax)
 
     if check_print:
         matplot.show()
