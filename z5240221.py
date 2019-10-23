@@ -48,7 +48,6 @@ def question_1(check_print=False):
 
     # removing the 'Totals' row from the data frame
     df = df[df.Country != 'Totals']
-    # df.drop(df.index[df.shape[0]-1], inplace=True)
 
     # printing first five rows of data frame
     if check_print:
@@ -87,6 +86,7 @@ def question_3(check_print=False):
     if check_print:
         print("--------------- question_3 ---------------")
     df = question_2()
+
     # dropping rows with na values
     df.dropna(how='all', inplace=True)
 
@@ -114,6 +114,7 @@ def question_5(check_print=False):
     if check_print:
         print("--------------- question_5 ---------------")
     df = question_4()
+
     # converting string into numbers
     df['winter_gold'] = df['winter_gold'].map(convert_int)
 
@@ -129,8 +130,9 @@ def question_5(check_print=False):
 def question_6(check_print=False):
     if check_print:
         print("--------------- question_6 ---------------")
-    # changing the str values to numeric values
     df = question_5()
+
+    # changing the str values to numeric values
     df['summer_silver'] = df['summer_silver'].map(convert_int)
     df['summer_bronze'] = df['summer_bronze'].map(convert_int)
     df['winter_silver'] = df['winter_silver'].map(convert_int)
@@ -151,6 +153,7 @@ def question_7(check_print=False):
     if check_print:
         print("--------------- question_7 ---------------")
     df = question_6()
+
     # take out top 10 winners
     top_winners = df.sort_values(by='total', ascending=False).head(10)
 
@@ -165,6 +168,7 @@ def question_7(check_print=False):
     plt = top_winners_sorted.plot.barh(y=['winter_total', 'summer_total'], stacked=True,
                                        title='Medals for Winter and Summer Games')
     plt.legend(['Winter games', 'Summer games'], ncol=3, edgecolor='None')
+
     if check_print:
         matplot.show()
     return df
@@ -174,12 +178,15 @@ def question_8(check_print=False):
     if check_print:
         print("--------------- question_8 ---------------")
     df = question_6()
+
     filtered_countries_list = [
         'United States',
         'Great Britain',
         'Japan',
         'New Zealand'
     ]
+
+    # filtering data frame with filter
     filtered_df = df[df.index.str.strip().isin(filtered_countries_list)]
 
     # removing the undesired columns
@@ -197,6 +204,7 @@ def question_8(check_print=False):
     # plot
     plt = filtered_df.plot.bar(rot=0, color=['#4472C4', '#ED7D31', '#A5A5A5'], title='Winter Games').legend(
         edgecolor='None', ncol=3, loc='best')
+
     if check_print:
         matplot.show()
 
@@ -205,6 +213,7 @@ def question_9(check_print=False):
     if check_print:
         print("--------------- question_9 ---------------")
     df = question_6()
+
     # convert participation from string to int
     df['summer_participation'] = df['summer_participation'].map(convert_int)
 
@@ -236,13 +245,17 @@ def question_10(check_print=False):
     # changing the NaN from  the above transformation to 0
     df.loc[df['winter_participation'] == 0, 'rate_winter'] = 0
 
+    # reading csv
     continents_df = pd.read_csv('Countries-Continents.csv')
 
     # merging the data sets
     df_joined = pd.merge(left=df, right=continents_df, on=None, left_on=df.index.str.strip(), right_on='Country',
                          how='left')
+
+    # filling blank values with Unknown
     df_joined["Continent"].fillna("Unknown", inplace=True)
 
+    # filtering and making new data frames
     africa_df = df_joined.query('Continent == "Africa"').filter(['rate_summer', 'rate_winter', 'Country']).set_index(
         'Country')
     asia_df = df_joined.query('Continent == "Asia"').filter(['rate_summer', 'rate_winter', 'Country']).set_index(
@@ -258,10 +271,12 @@ def question_10(check_print=False):
     unknown_df = df_joined.query('Continent == "Unknown"').filter(['rate_summer', 'rate_winter', 'Country']).set_index(
         'Country')
 
+    # function to put labels into the plot
     def annotate_df(dataframe, axis):
         for k, v in dataframe.iterrows():
             axis.annotate(k, v)
 
+    # plotting
     ax = africa_df.plot.scatter(x='rate_summer', y='rate_winter', color='green', label='Africa')
     ax = asia_df.plot.scatter(x='rate_summer', y='rate_winter', color='orange', label='Asia', ax=ax)
     ax = europe_df.plot.scatter(x='rate_summer', y='rate_winter', color='brown', label='Europe', ax=ax)
@@ -271,9 +286,11 @@ def question_10(check_print=False):
     ax = unknown_df.plot.scatter(x='rate_summer', y='rate_winter', color='grey', label='Unknown', figsize=(21, 9),
                                  ax=ax, title='Scatter plot of winning countries, Summer Rate vs Winner Rate')
     # I have increased the size of the plot to fit all the data points and make it as presentable as possible
+
     ax.set_xlabel("Summer Rate")
     ax.set_ylabel("Winter Rate")
 
+    # applying the labels
     annotate_df(africa_df, ax)
     annotate_df(asia_df, ax)
     annotate_df(europe_df, ax)
