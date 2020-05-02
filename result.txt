@@ -1,0 +1,57 @@
+--------------- question_1 ---------------
+                    Country summer_rubbish summer_participation summer_gold summer_silver summer_bronze summer_total winter_participation winter_gold winter_silver winter_bronze winter_total
+1         Afghanistan (AFG)            BLA                   14           0             0             2            2                    0           0             0             0            0
+2             Algeria (ALG)            BLA                   13           5             4             8           17                    3           0             0             0            0
+3           Argentina (ARG)            BLA                   24          21            25            28           74                   19           0             0             0            0
+4             Armenia (ARM)            BLA                    6           2             6             6           14                    7           0             0             0            0
+5   Australasia (ANZ) [ANZ]            BLA                    2           3             4             5           12                    0           0             0             0            0
+--------------- question_2 ---------------
+              summer_participation summer_gold summer_silver summer_bronze winter_participation winter_gold winter_silver winter_bronze
+Country                                                                                                                                
+ Afghanistan                    14           0             0             2                    0           0             0             0
+ Algeria                        13           5             4             8                    3           0             0             0
+ Argentina                      24          21            25            28                   19           0             0             0
+ Armenia                         6           2             6             6                    7           0             0             0
+ Australasia                     2           3             4             5                    0           0             0             0
+--------------- question_3 ---------------
+                                   summer_participation summer_gold summer_silver summer_bronze winter_participation winter_gold winter_silver winter_bronze
+Country                                                                                                                                                     
+ Vietnam                                             15           1             3             0                    0           0             0             0
+ Virgin Islands                                      12           0             1             0                    7           0             0             0
+ Yugoslavia                                          18          28            31            31                   16           0             3             1
+ Zambia                                              13           0             1             1                    0           0             0             0
+ Zimbabwe                                            13           3             4             1                    1           0             0             0
+ Unified Team                                         1          45            38            29                    1           9             6             8
+ Independent Olympic Athletes                         3           1             0             1                    0           0             0             0
+ Independent Olympic Participants                     1           0             1             2                    0           0             0             0
+ Olympic Athletes from Russia                         0           0             0             0                    1           2             6             9
+ Mixed team                                           3           8             5             4                    0           0             0             0
+--------------- question_4 ---------------
+ United States 
+--------------- question_5 ---------------
+ United States  917
+--------------- question_6 ---------------
+                summer_participation  summer_gold  summer_silver  summer_bronze winter_participation  winter_gold  winter_silver  winter_bronze  total
+Country                                                                                                                                               
+ United States                    27         1022            795            705                   23          105            110             90   2827
+ Soviet Union                      9          395            319            296                    9           78             57             59   1204
+ Great Britain                    28          263            295            291                   23           11              4             16    880
+ Germany                          16          191            194            230                   12           92             88             60    855
+ France                           28          212            241            263                   23           36             35             53    840
+           summer_participation  summer_gold  summer_silver  summer_bronze winter_participation  winter_gold  winter_silver  winter_bronze  total
+Country                                                                                                                                          
+ Jordan                      10            1              0              0                    0            0              0              0      1
+ Djibouti                     8            0              0              1                    0            0              0              0      1
+ Cyprus                      10            0              1              0                   11            0              0              0      1
+ Sudan                       12            0              1              0                    0            0              0              0      1
+ Senegal                     14            0              1              0                    5            0              0              0      1
+--------------- question_7 ---------------
+--------------- question_8 ---------------
+--------------- question_9 ---------------
+Country
+ Unified Team      368.000000
+ Soviet Union      358.666667
+ United States     303.703704
+ East Germany      255.800000
+ Russia            211.666667
+--------------- question_10 ---------------
