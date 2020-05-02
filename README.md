@@ -87,12 +87,12 @@ Country
 ```
 # Question 7: (based on the dataframe created in Question-3)
 Plot a bar chart of the top 10 countries ordered by the number of total of medals (summer and winter). For each country use a stacked bar chart showing for each county the total medals for winter and summer games.
-![Image](../master/images/ques7.jpg?raw=true)
+![Image](https://github.com/jatin7gupta/Olympic_Medals_Data_Visualization/blob/master/images/ques7.jpg?raw=true)
 
 
 # Question 8 : (based on the dataframe created in Question-3)
 Plot a bar chart of the countries (United States, Australia, Great Britain, Japan, New Zealand). For each county you need to show the gold, silver and bronze medals for winter games. 
-![Image](../master/images/ques8.jpg?raw=true)
+![Image](https://github.com/jatin7gupta/Olympic_Medals_Data_Visualization/blob/master/images/ques8.jpg?raw=true)
 
 
 # Question 9: (based on the dataframe created in Question-3)
@@ -111,4 +111,4 @@ Country
 # Question 10: (based on the dataframe created in Question-3)
 Based on the raking scheme in Question 9, also calculate the points per participation for each country in the Winter Games. Next plot a scatter chart with x = "points per participation for summer games" , and y = "points per participation for winter games". 
 however, you also need to ink bubbles based on the their continents (e.g, Asia red, Africa blue, ..). You may use the Country-Continent dataset to colour the counties, and use a default color (Gray) for countries which are not listed in the dataset. You chart must also have legends and labels showing the name of countries beside the points inside the chart.
-![Image](../master/images/ques10.jpg?raw=true)
+![Image](https://github.com/jatin7gupta/Olympic_Medals_Data_Visualization/blob/master/images/ques10.jpg?raw=true)
